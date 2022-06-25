@@ -1,0 +1,9 @@
+﻿<Application x:Class="Fruteria_Team.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Fruteria_Team"
+             StartupUri="/Views/VentasView.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>

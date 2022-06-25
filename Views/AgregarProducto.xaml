@@ -1,0 +1,275 @@
+﻿<Window x:Class="Fruteria_Team.Views.AgregarProducto"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fruteria_Team.Views"
+        xmlns:vm="clr-namespace:Fruteria_Team.ViewModels"
+        mc:Ignorable="d"
+        Title="AgregarProducto" Height="500" Width="450">
+    <Window.DataContext>
+        <vm:FruteriaViewModel></vm:FruteriaViewModel>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Offset="1" Color="#FFF91818"></GradientStop>
+                <GradientStop Offset=".1" Color="#ffcc91"></GradientStop>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".25*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height=".35*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+
+        <Grid.Resources>
+            <Style TargetType="Button" x:Key="agregar">
+
+                <Setter Property="Width" Value="70"></Setter>
+                <Setter Property="Height" Value="70"></Setter>
+                <Setter Property="Margin" Value="8,0"></Setter>
+                <Setter Property="Foreground" Value="white"></Setter>
+                <Setter Property="FontSize" Value="40"></Setter>
+                <Setter Property="Cursor" Value="ArrowCD"></Setter>
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="10" 
+                        Background="#3278FA" BorderBrush="White" 
+                        BorderThickness="4">
+                                <ContentPresenter x:Name="contentPresenter" 
+                                      Content="🍍" 
+                                      HorizontalAlignment="Center"
+                                      Margin="0,0,0,5" 
+                                      VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style TargetType="Button" x:Key="cancelar">
+                <Setter Property="Width" Value="70"></Setter>
+                <Setter Property="Height" Value="70"></Setter>
+                <Setter Property="Margin" Value="8,0"></Setter>
+                <Setter Property="Foreground" Value="white"></Setter>
+                <Setter Property="FontSize" Value="40"></Setter>
+                <Setter Property="Cursor" Value="Hand"></Setter>
+                <Setter Property="Background" Value="#FC1D44"></Setter>
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="10" 
+                        Background="#FC1D44" BorderBrush="White" 
+                        BorderThickness="4">
+                                <ContentPresenter x:Name="contentPresenter" 
+                                      Content="🔙" 
+                                      HorizontalAlignment="Center"
+                                      Margin="0,0,0,5" 
+                                      VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style TargetType="TextBlock">
+                <Setter Property="FontSize" Value="25"></Setter>
+                <Setter Property="Margin" Value="15"></Setter>
+                <Setter Property="FontFamily" Value="../Assets/#Grithani"></Setter>
+            </Style>
+
+            <Style TargetType="TextBox">
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="Margin" Value="10"></Setter>
+                <Setter Property="Background" Value="white"></Setter>
+                <Setter Property="Width" Value="auto"></Setter>
+                <Setter Property="Foreground" Value="Black"></Setter>
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TextBox}">
+                            <Grid>
+                                <Border CornerRadius="10"
+                            BorderThickness="3"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="Black">
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Border>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+            </Style>
+            <Style x:Key="ComboBoxTextBoxStyle" TargetType="{x:Type TextBox}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TextBox}">
+                            <Grid>
+                                <Border CornerRadius="10,0,0,10"
+                            BorderThickness="3,3,0,3"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="Black">
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Border>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="ComboBoxButtonStyle" TargetType="{x:Type ToggleButton}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+                            <Border 
+                        Background="White" 
+                        x:Name="border" 
+                        CornerRadius="0,5,5,0" 
+                        BorderThickness="0,3,3,3"
+                        BorderBrush="Black">
+                                <ContentPresenter />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="BorderBrush" Value="Transparent"></Setter>
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="Margin" Value="10"></Setter>
+                <Setter Property="Background" Value="Transparent"></Setter>
+                <Setter Property="Width" Value="auto"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ComboBox}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition MaxWidth="20"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Name="PART_EditableTextBox"
+                                 Style="{StaticResource ComboBoxTextBoxStyle}"
+                                 Padding="5,0,0,0"
+                                 Height="{TemplateBinding Height}"/>
+                                <ToggleButton Grid.Column="1" Margin="0"
+                                     Height="{TemplateBinding Height}"
+                                     Style="{StaticResource ComboBoxButtonStyle}"
+                                     Focusable="False"
+                                     IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                      ClickMode="Press">
+                                    <Path Grid.Column="1"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Data="M 0 0 L 4 4 L 8 0 Z"
+                                  Fill="#FC1D44" />
+                                </ToggleButton>
+                                <ContentPresenter Name="ContentSite"
+                                      Content="{TemplateBinding SelectionBoxItem}"
+                                      ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                      ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Left"
+                                      Margin="5,0,0,0"/>
+                                <Popup Name="Popup"
+                               Placement="Bottom"
+                               IsOpen="{TemplateBinding IsDropDownOpen}"
+                               AllowsTransparency="True" 
+                               Focusable="False"
+                               PopupAnimation="Slide">
+                                    <Grid Name="DropDown"
+                                  SnapsToDevicePixels="True"                
+                                  MinWidth="{TemplateBinding ActualWidth}"
+                                  MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                        <Border 
+                                    x:Name="DropDownBorder"
+                                    BorderThickness="2"
+                                    CornerRadius="5"
+                                    Background="White"
+                                    BorderBrush="Black"/>
+                                        <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
+                                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                        </ScrollViewer>
+                                    </Grid>
+                                </Popup>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style TargetType="DatePicker">
+                <Setter Property="BorderBrush" Value="white"></Setter>
+                <Setter Property="Height" Value="30"></Setter>
+                <Setter Property="Margin" Value="10"></Setter>
+                <Setter Property="Background" Value="white"></Setter>
+                <Setter Property="Width" Value="auto"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            </Style>
+
+        </Grid.Resources>
+        <Image Grid.RowSpan="3" Source="../Assets/Logo.png"
+               Margin="50" Opacity=".4"></Image>
+        <Border Grid.RowSpan="5"
+                BorderThickness="4"
+                BorderBrush="White"
+                Margin="5"
+                CornerRadius="10"></Border>
+
+        <DockPanel Margin="10,10,10,0">
+            <Image Source="../Assets/Logo.png"
+                   Margin="2"></Image>
+            <Grid Margin="5">
+                <Border Background="White"
+                        Margin="0"
+                        CornerRadius="0,0,10,0"
+                        Width="auto"
+                        Height="5"
+                        VerticalAlignment="Bottom"></Border>
+                <TextBlock VerticalAlignment="Center"
+                           Foreground="white"
+                           FontSize="40"
+                   Margin="10,0,0,0">🍍 Producto Nuevo</TextBlock>
+            </Grid>
+        </DockPanel>
+
+        <WrapPanel Grid.Row="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Margin="0"
+                   >
+            <Button Style="{StaticResource agregar}" Command="{Binding AgregarProductoCommand}"></Button>
+            <Button Style="{StaticResource cancelar}" IsCancel="True">🔙</Button>
+        </WrapPanel>
+
+        <StackPanel Grid.Row="1" Margin="10,0">
+
+            <DockPanel>
+                <TextBlock >Nombre del Producto</TextBlock>
+                <TextBox Text="{Binding Productos.NomProducto}"></TextBox>
+            </DockPanel>
+
+            <DockPanel>
+                <TextBlock >Codigo del grupo</TextBlock>
+                <ComboBox ItemsSource="{Binding Gru}" DisplayMemberPath="NombreGrupo" SelectedValuePath="IdGrupo" SelectedValue="{Binding Productos.IdGrupo}"></ComboBox>
+            </DockPanel>
+
+            <DockPanel>
+                <TextBlock>Precio</TextBlock>
+                <TextBox Text="{Binding Productos.Precio}"></TextBox>
+            </DockPanel>
+
+            <DockPanel>
+                <TextBlock Text="{Binding Error}" HorizontalAlignment="Center"></TextBlock>
+            </DockPanel>
+        </StackPanel>
+    </Grid>
+</Window>
